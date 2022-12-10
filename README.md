@@ -1,3 +1,5 @@
+This is my first app using Vue 3, tailwindcss, vuex, store, firebase and router :) 
+
 # vue-authentication
 
 ## Project setup
