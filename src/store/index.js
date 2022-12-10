@@ -1,14 +1,19 @@
+ /* eslint-disable */
+
 import { createStore } from 'vuex'
 import router from '../router'
-import { createUserWithEmailAndPassword, 
-          signInWithEmailAndPassword, 
-          signOut,
-          sendPasswordResetEmail,
-          getAuth
-        } 
-        from 'firebase/auth'
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut,
+  sendPasswordResetEmail,
+  getAuth,
+  updateProfile
+} from 'firebase/auth'
+//import { FirebaseError } from 'firebase/app';
 
-        const auth = getAuth();
+
+const auth = getAuth();
 
 export default createStore({
   state: {
@@ -43,9 +48,9 @@ export default createStore({
     },
 
     async login ({ commit }, details){
-      const { email, password } = details;
+      const { email, password} = details;
       try {
-        await signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password);
       } catch (error){
         switch(error.code){
           case "auth/user-not-found":
@@ -66,10 +71,47 @@ export default createStore({
     },
 
     async register({ commit }, details){
-      const { email, password } = details;
+      /* eslint-disable */
+      const { email, password, text } = details;
+      alert(text);
+      alert(email);
       try {
-        await createUserWithEmailAndPassword(auth, email, password)
-      } catch (error){
+        // Create the user account
+        const user = await createUserWithEmailAndPassword(auth, email, password);
+        /*
+          WHAT MIGHT NEED TO HAPPEN -
+          - Check if user is signed in
+          - GET the users profile: 
+            const user = auth.currentUser 
+              if(user!== null){
+                const displayName = user.displayName
+              }
+          - to check? -
+              if(user !== null){
+                user.providerData.forEach((profile) => {
+                  console.log("  Name: " + profile.displayName);
+                })
+              }
+          - using the updateProfile:
+              import { getAuth, updateProfile } from "firebase/auth";
+                const auth = getAuth();
+                updateProfile(auth.currentUser, {
+                  displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
+                }).then(() => {
+                  // Profile updated!
+                  // ...
+                }).catch((error) => {
+                  // An error occurred
+                  // ...
+                });
+        */
+    
+                //update the profile with the submitted name
+      updateProfile(auth.currentUser, {
+        displayName: this.text
+        })
+      }
+      catch (error){
         switch(error.code){
           case "auth/email-already-in-use":
             alert("Email already in use")
@@ -107,9 +149,11 @@ export default createStore({
         if(user == null){
           commit("CLEAR_USER")
         }
-          else{
+        else{
           commit("SET_USER", user)
         }
+
+        console.log(user);
 
         if(router.isReady() && router.currentRoute.value.path === "/login"){
           router.push("/")

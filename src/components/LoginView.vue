@@ -1,8 +1,11 @@
-
 <template>
-	<section class="">
+	<!-- This shows when the api is fetching data from firebase - this is done in the .then below -->
+	<div v-if="loginLoading" class="flex text-black bg-red-500 p-5 text-xl">
+		<SplashScreen />
+	</div>
+	<section v-if="!loginLoading" class="">
 		<div class="md:flex h-1/2 text-white">
-			<div class="pb-12 md:py-10 md:p-32 md:w-1/2 -mt-40">
+			<div class="pb-12 md:py-10 md:p-32 w-3/4 mx-auto md:mx-0 lg:w-1/2 container mt-20 md:-mt-28 lg:-mt-40">
 			<form class="" @submit.prevent="login">
 				<h2 class="mb-2 text-2xl md:text-5xl font-thin">
 					Welcome back to THINK
@@ -47,7 +50,7 @@
 						Remember for 30 days
 					</div>
 					
-					<button @click="this.$router.push('resetPass')" 
+					<button @click="this.$router.push('reset-password')" 
 							class="font-thin hover:cursor-pointer hover:text-gray-500 
 									duration-500 text-xs md:text-base"
 					>
@@ -67,23 +70,36 @@
 	</section>
 </template>
 
-
 <script>
 import store from '@/store';
 import { ref } from 'vue';
+import SplashScreen from '../components/splash-screen/SplashScreen.vue'
 
 export default {
 	setup() {
+		const loginLoading = ref(false);
 		const loginForm = ref({});
+		let registerForm = ref(false);
 
 		const login = () => {
-			store.dispatch("login", loginForm.value);
+			loginLoading.value = true;
+			store.dispatch("login", loginForm.value)
+			.then(
+				window.setTimeout(() => (loginLoading.value = false), 2000)
+			);
 		}
 
 		return{
+			loginLoading,
 			loginForm,
 			login,
+			registerForm
 		}
+	},
+
+	//registering the components
+	components: {
+		SplashScreen
 	}
 }
 </script>

@@ -14,24 +14,33 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    meta: {
-      requiresAuth: true
-    }
+    
+    component: () => import('../views/AboutView.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('../views/SettingsView.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/LoginView.vue')
+    component: () => import('../components/LoginView.vue')
   },
   {
     path: '/register',
     name: "Register",
-    component: () => import('../views/RegisterVue.vue')
+    component: () => import('../components/RegisterVue.vue')
   },
   {
-    path: '/resetPass',
+    path: '/reset-password',
     name: "Reset",
-    component: () => import('../views/ForgotPassword.vue')
+    component: () => import('../components/ForgotPassword.vue')
+  },
+  {
+    path: '/',
+    name: "loading",
+    component: () => import('../components/splash-screen/SplashScreen.vue')
   }
 ]
 
@@ -42,7 +51,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if(to.path === "/login" & auth.currentUser){
-    next("/")
+    next("/home")
     return;
   }
 
@@ -56,7 +65,7 @@ router.beforeEach((to, from, next) => {
 
 router.beforeEach((to, from, next) => {
   if(to.path === "/register" & auth.currentUser){
-    next("/")
+    next("/home")
     return;
   }
 
