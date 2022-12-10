@@ -12,8 +12,8 @@ const routes = [
     },
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/explore',
+    name: 'Explore',
     
     component: () => import('../views/AboutView.vue')
   },
@@ -41,6 +41,11 @@ const routes = [
     path: '/',
     name: "loading",
     component: () => import('../components/splash-screen/SplashScreen.vue')
+  },
+  {
+    path: '/messages',
+    name: "Messages",
+    component: () => import('../views/MessagesVue.vue')
   }
 ]
 
