@@ -1,0 +1,4 @@
+have a 'add friends' section to get used to using vue / js
+this will be an array of objects 0 using the https://random-data-api.com/ API
+and will get random peoples data.
+When a user adds another user, it will be stored in their 'friends'.
