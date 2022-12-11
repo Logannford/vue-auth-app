@@ -1,11 +1,11 @@
 <template>
     <!-- This is the desktop nav -->
-    <div class="bg-[#0C0C0C] flex flex-col h-full text-white gap-y-10 w-20 ml-2 rounded-xl items-center">
+    <nav v-if="$store.state.user" class="bg-[#0C0C0C] flex flex-col h-full text-white gap-y-10 w-20 ml-2 rounded-xl items-center">
         <!-- Profile -->
         <RouterLink to="/" class="flex flex-col self-center items-center">
             <div class="bg-black w-10 h-10 rounded-full mt-5 text-white"></div>
             <span class="text-xs font-thin text-center mt-2">
-                Name
+                {{ this.$store.state.user.displayName }}
             </span>
         </RouterLink>
         <!-- Home -->
@@ -53,9 +53,8 @@
                 Settings
             </span>
         </RouterLink>
-    </div>
+    </nav>
     <!-- has to be outside the wrapper div other wise will display same size as nav -->
-    <router-view/>
 </template>
 
 <script>

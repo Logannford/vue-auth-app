@@ -16,7 +16,9 @@ const auth = getAuth();
 
 export default createStore({
   state: {
-    user: null
+    user: {
+      data: null
+    }
   },
   getters: {
   },
@@ -72,11 +74,11 @@ export default createStore({
     async register({ commit }, details){
       /* eslint-disable */
       const { email, password, text } = details;
-      alert(text);
-      alert(email);
+      console.log(text);
       try {
         // Create the user account
-        const user = await createUserWithEmailAndPassword(auth, email, password);
+        const user = await createUserWithEmailAndPassword(auth, email, password, text);
+        
         /*
           WHAT MIGHT NEED TO HAPPEN -
           - Check if user is signed in
@@ -104,7 +106,14 @@ export default createStore({
                   // ...
                 });
         */
-    
+       //if the user gets given an account - 
+       // get the current user, and update their displayName 
+       //I will also be able to update the profile picture from here too
+        if(user){
+            updateProfile(auth.currentUser,{
+              displayName: text
+            })
+        }
       //update the profile with the submitted name
       }
       catch (error){

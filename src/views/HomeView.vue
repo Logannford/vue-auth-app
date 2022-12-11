@@ -1,9 +1,7 @@
 <template>
   <div class="flex justify-center">
-    <h1 class="text-white">
-      <button class="bg-white text-black rounded-full">
-        test
-      </button>
+    <h1 class="text-white text-3xl font-thin ml-10">
+      Welcome {{ this.$store.state.user.displayName }}
     </h1>
   </div>
 </template>

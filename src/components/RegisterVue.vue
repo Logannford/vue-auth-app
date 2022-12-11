@@ -3,7 +3,7 @@
 	<div v-if="registerLoading" class="bg-blue-500 p-5 text-xl">
 		Loading
 	</div>
-	<section v-show="!registerLoading">
+	<section class="w-full" v-show="!registerLoading">
 		<div class="md:flex h-1/2 text-white">
 			<div class="pb-12 md:py-10 md:p-32 w-3/4 mx-auto md:mx-0 lg:w-1/2 container mt-20 md:-mt-28 lg:-mt-40">
 				<form class="bg-black py-10" @submit.prevent="register">
@@ -37,13 +37,13 @@
 						<input 
 							type="text"
 							placeholder="name"
-							v-model="registerForm.name"
+							v-model="registerForm.text"
 							class="peer h-10 w-full text-2xl bg-black border-b border-gray-600 text-white placeholder-transparent focus:outline-none"
 						>
 						<label for="name" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-2xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0 peer-focus:-top-7 peer-focus:text-gray-600 peer-focus:text-sm">name</label>
 						<!-- just testing the v-model -->
 						<div class="text-white">
-							{{ registerForm.name }}
+							{{ registerForm.text }}
 						</div>
 					</div>
 					<div class="">
@@ -105,7 +105,7 @@ export default {
 			registerLoading,
 			registerForm,
 			register,
-			loginForm
+			loginForm,
 		}
 	},
 

@@ -1,6 +1,8 @@
 <template>
   <div class="flex">
     <navigation-desktop-vue />
+    <router-view/>
+
   </div>
 </template>
 

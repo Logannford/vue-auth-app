@@ -3,7 +3,7 @@
 	<div v-if="loginLoading" class="flex text-black bg-red-500 p-5 text-xl">
 		<SplashScreen />
 	</div>
-	<section v-if="!loginLoading" class="">
+	<section class="w-full" v-if="!loginLoading">
 		<div class="md:flex h-1/2 text-white">
 			<div class="pb-12 md:py-10 md:p-32 w-3/4 mx-auto md:mx-0 lg:w-1/2 container mt-20 md:-mt-28 lg:-mt-40">
 			<form class="" @submit.prevent="login">
