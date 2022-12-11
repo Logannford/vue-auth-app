@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center">
+  <div class="flex justify-center mt-10">
     <h1 class="text-white text-3xl font-thin ml-10">
       <!-- This is getting the displayName from the currently signed in user -->
       Welcome {{ this.$store.state.user.displayName }},
