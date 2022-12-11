@@ -78,34 +78,6 @@ export default createStore({
       try {
         // Create the user account
         const user = await createUserWithEmailAndPassword(auth, email, password, text);
-        
-        /*
-          WHAT MIGHT NEED TO HAPPEN -
-          - Check if user is signed in
-          - GET the users profile: 
-            const user = auth.currentUser 
-              if(user!== null){
-                const displayName = user.displayName
-              }
-          - to check? -
-              if(user !== null){
-                user.providerData.forEach((profile) => {
-                  console.log("  Name: " + profile.displayName);
-                })
-              }
-          - using the updateProfile:
-              import { getAuth, updateProfile } from "firebase/auth";
-                const auth = getAuth();
-                updateProfile(auth.currentUser, {
-                  displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
-                }).then(() => {
-                  // Profile updated!
-                  // ...
-                }).catch((error) => {
-                  // An error occurred
-                  // ...
-                });
-        */
        //if the user gets given an account - 
        // get the current user, and update their displayName 
        //I will also be able to update the profile picture from here too
@@ -139,6 +111,28 @@ export default createStore({
         commit("SET_USER", auth.currentUser);
 
         router.push("/");
+    },
+
+    async editName({ commit }, details){
+      //get the name passed in
+      const { name } = details;
+      //get the current user that is signed in 
+      const user = auth.currentUser;
+      //if the user is not null - 
+      if(user !== null){
+        //get the users current info
+        user.providerData.forEach((profile) => {
+        //then update the profile with the passed in name
+          updateProfile(auth.currentUser,{
+            displayName: name
+          }).then(() => {
+            //will need to display a 'updated' screen here
+            console.log("updated name with" + name);
+          }).catch((error) => {
+            console.log(error)
+          })
+        })
+      }
     },
 
     async userInfo(user){

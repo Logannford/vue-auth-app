@@ -4,7 +4,7 @@
 		<input 
 			type="text"
 			placeholder="Name"
-			v-model="editDisplayName.value"
+			v-model="editDisplayName.name"
 			class="autofill:bg-transparent peer h-10 w-1/4 text-lg bg-black border-b border-gray-600 text-white placeholder-transparent focus:outline-none"
 		>
 			<label for="editPassword" class="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0 peer-focus:-top-7 peer-focus:text-gray-600 peer-focus:text-sm">Name</label>
@@ -28,8 +28,7 @@ export default {
 		const editDisplayName = ref({});
 
 		const editName = () => {
-			store.dispatch("editName", editName.value);
-			console.log(editDisplayName.value);
+			store.dispatch("editName", editDisplayName.value);
 		}
 		
 
