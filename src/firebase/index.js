@@ -15,7 +15,8 @@ const firebaseConfig = {
 	storageBucket: "vue-auth-af311.appspot.com",
 	messagingSenderId: "348708568813",
 	appId: "1:348708568813:web:e4b9d57b59408049ab56e4",
-	measurementId: "G-3ZVMDX0NYQ"
+	measurementId: "G-3ZVMDX0NYQ",
+	databaseURL: "https://vue-auth-af311,default-rtdb.europe-west1.firebasedatabase.app/"
 };
 
 // Initialize Firebase

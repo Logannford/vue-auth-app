@@ -10,8 +10,8 @@ import {
   getAuth,
   updateProfile
 } from 'firebase/auth'
+import { getDatabase, ref, set } from "firebase/database";
 //import { FirebaseError } from 'firebase/app';
-
 
 const auth = getAuth();
 
@@ -68,6 +68,15 @@ export default createStore({
         commit("SET_USER", auth.currentUser);
 
         router.push("/");
+    },
+
+    async writeUserData(userId, name, email, imageUrl) {
+      const db = getDatabase();
+      set(ref(db, 'users/' + userId), {
+        username: name,
+        email: email,
+        profile_picture : imageUrl
+      });
     },
 
     async register({ commit }, details){
@@ -136,6 +145,13 @@ export default createStore({
         router.push("/");
     },
 
+    async userInfo(user){
+      if(user){
+        console.log(user.email);
+      }
+    },
+
+    // logout
     async logout({ commit }){
       await signOut(auth)
 
