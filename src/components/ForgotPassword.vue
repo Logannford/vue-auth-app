@@ -1,6 +1,9 @@
 <template>
+	<div class="z-0 w-full">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,160L40,138.7C80,117,160,75,240,64C320,53,400,75,480,90.7C560,107,640,117,720,101.3C800,85,880,43,960,53.3C1040,64,1120,128,1200,160C1280,192,1360,192,1400,192L1440,192L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>
+	</div>
 	<div class="md:flex text-white -mt-64">
-		<div class="p-5 md:my-20 md:py-10 md:p-32 mx-auto md:mx-0 lg:w-1/2 container mt-80">
+		<div class="p-5 md:my-20 md:py-10 md:p-32 mx-auto md:mx-0 lg:w-3/4 container mt-80">
 			<div @click="this.$router.push('login')" 
 					class="w-5 h-5 mb-4 animate-bounce duration-500 group
 					hover:cursor-pointer text-white hover:text-gray-700"

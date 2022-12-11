@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="" :class="{'flex': $store.state.user != null}">
     <navigation-desktop-vue />
     <router-view/>
 

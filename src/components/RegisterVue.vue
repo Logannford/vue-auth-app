@@ -1,16 +1,19 @@
 <template>
+	<div class="z-0">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,160L40,138.7C80,117,160,75,240,64C320,53,400,75,480,90.7C560,107,640,117,720,101.3C800,85,880,43,960,53.3C1040,64,1120,128,1200,160C1280,192,1360,192,1400,192L1440,192L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>
+	</div>
 	<!-- This shows when the api is fetching data from firebase - this is done in the .then below -->
 	<div v-if="registerLoading" class="bg-blue-500 p-5 text-xl">
 		Loading
 	</div>
 	<section class="w-full" v-show="!registerLoading">
 		<div class="md:flex h-1/2 text-white">
-			<div class="pb-12 md:py-10 md:p-32 w-3/4 mx-auto md:mx-0 lg:w-1/2 container mt-20 md:-mt-28 lg:-mt-40">
+			<div class="pb-12 md:py-10 md:p-32 w-3/4 mx-auto md:mx-0 lg:w-[65%] container -mt-20 md:-mt-28 lg:-mt-44">
 				<form class="bg-black py-10" @submit.prevent="register">
 					<h2 class="mb-2 text-2xl md:text-5xl font-thin inline-block">
 						Welcome to THINK
 					</h2>
-					<h5 class="mb-16 font-thin text-sm md:text-base mt-2">
+					<h5 class="mb-8 font-thin text-sm md:text-base mt-2">
 						Register below:
 					</h5>
 					<div class="bg-black relative">
