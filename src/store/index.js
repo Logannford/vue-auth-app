@@ -10,7 +10,6 @@ import {
   getAuth,
   updateProfile
 } from 'firebase/auth'
-import { getDatabase, ref, set } from "firebase/database";
 //import { FirebaseError } from 'firebase/app';
 
 const auth = getAuth();
@@ -70,15 +69,6 @@ export default createStore({
         router.push("/");
     },
 
-    async writeUserData(userId, name, email, imageUrl) {
-      const db = getDatabase();
-      set(ref(db, 'users/' + userId), {
-        username: name,
-        email: email,
-        profile_picture : imageUrl
-      });
-    },
-
     async register({ commit }, details){
       /* eslint-disable */
       const { email, password, text } = details;
@@ -115,10 +105,7 @@ export default createStore({
                 });
         */
     
-                //update the profile with the submitted name
-      updateProfile(auth.currentUser, {
-        displayName: this.text
-        })
+      //update the profile with the submitted name
       }
       catch (error){
         switch(error.code){
