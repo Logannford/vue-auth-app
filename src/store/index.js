@@ -135,12 +135,6 @@ export default createStore({
       }
     },
 
-    async userInfo(user){
-      if(user){
-        console.log(user.email);
-      }
-    },
-
     // logout
     async logout({ commit }){
       await signOut(auth)
