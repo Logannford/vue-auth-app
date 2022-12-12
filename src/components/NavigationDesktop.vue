@@ -51,7 +51,7 @@
             </button>
             <!-- Upload -->
             <button @click="counter=3" :class="{'bg-[#252525] rounded duration-300': counter==3}" class="mx-6">
-                <RouterLink to="/" class="flex text-white p-2" :class="{'justify-center': !navActive}">
+                <RouterLink to="/upload" class="flex text-white p-2" :class="{'justify-center': !navActive}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <line x1="12" y1="5" x2="12" y2="19" />
@@ -75,7 +75,7 @@
             </button>
             <!-- Messages -->
             <button @click="counter=5" :class="{'bg-[#252525] rounded duration-300': counter==5}" class="mx-6">
-                <RouterLink to="/messages" class="flex text-white p-2" :class="{'justify-center': !navActive}">
+                <RouterLink to="/friends" class="flex text-white p-2" :class="{'justify-center': !navActive}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <circle cx="9" cy="7" r="4" />
