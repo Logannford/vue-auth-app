@@ -2,3 +2,26 @@ have a 'add friends' section to get used to using vue / js
 this will be an array of objects 0 using the https://random-data-api.com/ API
 and will get random peoples data.
 When a user adds another user, it will be stored in their 'friends'.
+
+11/12/2022:
+things to add: 
+- email verification - then display email is verified
+- change password
+- update telephone number / add the ability to add it so can do 2FA
+- sign in with github / sign up 
+- dashboard swiper
+- dashboard random img / data API / number to generate 'fake' posts
+- also use random data API to generate friends to add
+- allow adding friends
+- upload a profile picture
+- modal transitions on 'log out'
+- explore will allow to search for users / friends
+- show all users on the firestore DB
+- allow messages - either users from firestore OR randomly 
+- allow to upload a photo and display on other dashboards + own profile
+- add a 'account created date'?
+- add a 'dev' seciton to show what is happening on the backend everytime an action is complete
+- explore page similar to instagram
+- messages similar to messenger
+- allow people to comment on photos 
+- add a 'profile view' similar to instagram
