@@ -3,6 +3,9 @@ this will be an array of objects 0 using the https://random-data-api.com/ API
 and will get random peoples data.
 When a user adds another user, it will be stored in their 'friends'.
 
+NOW THAT FIRESTORE DATABASE CONNECTION IS EPIC:
+- on register, pass in the name to the database / photoURL to make displaying easier
+
 11/12/2022:
 things to add: 
 - email verification - then display email is verified
