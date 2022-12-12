@@ -9,14 +9,31 @@
 
 <script>
 // @ is an alias to /src
-
+/* eslint-disable */
+import { ref, onMounted } from 'vue';
+import { collection, onSnapshot, doc } from 'firebase/firestore';
+import { db, fireStore } from '@/firebase/index';
 
 export default{
   setup(){
-    
 
+    onMounted(() => {
+      onSnapshot(collection(db, '/userInfo'), (querySnapshot) => {
+        const test = [];
+        querySnapshot.forEach((doc) => {
+            const test1 = {
+              id: doc.id,
+              content: doc.data().name,
+              done: doc.data().done
+            }
+            test.push(test1)
+        })
+        console.log(test);
+      });
+      console.log(onMounted)
+    })
+    
     return{
-      
     }
   },
 }

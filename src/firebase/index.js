@@ -3,7 +3,8 @@ import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth"
 import "firebase/firestore";
-import { getDatabase } from "firebase/database";
+import { getFirestore } from 'firebase/firestore'
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -16,16 +17,19 @@ const firebaseConfig = {
 	storageBucket: "vue-auth-af311.appspot.com",
 	messagingSenderId: "348708568813",
 	appId: "1:348708568813:web:e4b9d57b59408049ab56e4",
-	measurementId: "G-3ZVMDX0NYQ",
-	databaseURL: "https://vue-auth-af311,default-rtdb.europe-west1.firebasedatabase.app/"
+	measurementId: "G-3ZVMDX0NYQ"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+const db = getFirestore(app);
+const fireStore = getFirestore(app)
+
 
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-export { auth, database };
+export { auth };
+export{ db };
+export{ fireStore } ;
 
