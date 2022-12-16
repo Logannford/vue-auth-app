@@ -11,18 +11,36 @@ import {
   updateProfile
 } from 'firebase/auth'
 //import { FirebaseError } from 'firebase/app';
+import { db, fireStore } from '@/firebase/index';
+import { collection, onSnapshot, doc } from 'firebase/firestore';
+import { ref } from 'vue';
 
 const auth = getAuth();
 
+  // onSnapshot(collection(db, "/userInfo"), (querySnapshot) => {
+  //   const realTimeDb = [];
+  //   querySnapshot.forEach((doc) => {
+  //       const realTimeDbContent = {
+  //         id: doc.id,
+  //         content: doc.data().name,
+  //         done: doc.data().done
+  //       }
+  //       realTimeDb.push(realTimeDbContent)
+  //   })
+  //   console.log(realTimeDb);
+  // });
+
 export default createStore({
   state: {
-    user: {
-      data: null
-    }
+    content: []
   },
   getters: {
   },
   mutations: {
+    //settings the messages
+    setContent(state, content){
+      state.content = content
+    },
     SET_USER (state, user){
       state.user = user
     },
@@ -31,6 +49,20 @@ export default createStore({
     }
   },
   actions: {
+
+    async fetchContent({ commit }){
+      onSnapshot(collection(db, "/userInfo"), (querySnapshot) => {
+        const content = []
+        querySnapshot.forEach(doc =>{
+          content.push({
+            id: doc.id,
+            name: doc.data().name,
+          })
+        })
+        commit("setContent", content)
+        console.log(content);
+      })
+    },
 
     async resetPass({ commit }, details){
       const { email }  = details;

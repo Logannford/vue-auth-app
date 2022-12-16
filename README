@@ -1,0 +1,31 @@
+Accessing data from the realtime firebase cloud database:
+
+The way that it is set up, it allows you to be able to accessa anything from the database where ever in the program, no matter the component / view etc etc.
+
+Simply do {{ message.(whatever value you are trying to display ) }} 
+and the value will be displayed.
+
+
+
+
+
+
+
+
+USEFUL TO KEEP FOR IN THE FUTURE :)
+
+
+onSnapshot(collection(db, "/userInfo"), (querySnapshot) => {
+        const realTimeDb = [];
+        querySnapshot.forEach((doc) => {
+            const testing = {
+              id: doc.id,
+              content: doc.data().name,
+              done: doc.data().done
+            }
+            realTimeDb.push(testing)
+        })
+        testings.value = realTimeDb;
+        const testName = ([realTimeDb[0].content]);
+        console.log(realTimeDb)
+      });
