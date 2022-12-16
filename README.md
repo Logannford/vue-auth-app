@@ -1,4 +1,4 @@
-This is my first app using Vue 3, tailwindcss, vuex, store, firebase and router :) 
+This is my first app using Vue 3, tailwindcss, vuex, firebase and router :) 
 
 # vue-authentication
 
