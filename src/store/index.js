@@ -12,7 +12,7 @@ import {
 } from 'firebase/auth'
 //import { FirebaseError } from 'firebase/app';
 import { db, fireStore } from '@/firebase/index';
-import { collection, onSnapshot, doc } from 'firebase/firestore';
+import { collection, onSnapshot, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { ref } from 'vue';
 
 const auth = getAuth();
@@ -50,6 +50,7 @@ export default createStore({
   },
   actions: {
 
+  //fetching data from the realtime database
     async fetchContent({ commit }){
       onSnapshot(collection(db, "/userInfo"), (querySnapshot) => {
         const content = []
@@ -64,6 +65,7 @@ export default createStore({
       })
     },
 
+    //resetting password via email
     async resetPass({ commit }, details){
       const { email }  = details;
       try{
@@ -76,10 +78,10 @@ export default createStore({
         }
         return;
       }
-
       commit("SET_USER", auth.currentUser);
     },
 
+    //allowing login
     async login ({ commit }, details){
       const { email, password} = details;
       try {
@@ -95,14 +97,13 @@ export default createStore({
           default:
             alert(error.message);
         }
-
         return;
       }
         commit("SET_USER", auth.currentUser);
-
         router.push("/");
     },
 
+    //allowing register
     async register({ commit }, details){
       /* eslint-disable */
       const { email, password, text } = details;
@@ -118,6 +119,13 @@ export default createStore({
               displayName: text
             })
         }
+        //on register, this will set the documentID to the email - for easy access / readablity in the 
+        //database. It will also set the name to allow for using everywhere on the site
+        //ass displayName cannot be used for all users in the auth
+        await setDoc(doc(db, "/userInfo", email ), {
+          name: text,
+          emailAddress: email
+        })
       //update the profile with the submitted name
       }
       catch (error){
@@ -137,14 +145,13 @@ export default createStore({
           default:
             alert(error.message);
         }
-
         return;
       }
         commit("SET_USER", auth.currentUser);
-
         router.push("/");
     },
 
+    //allowing edit name
     async editName({ commit }, details){
       //get the name passed in
       const { name } = details;
@@ -152,8 +159,9 @@ export default createStore({
       const user = auth.currentUser;
       //if the user is not null - 
       if(user !== null){
-        //get the users current info
-        user.providerData.forEach((profile) => {
+        await updateDoc(doc(db, "userInfo", this.$store.state.email ),{
+          name: displayName
+        }),
         //then update the profile with the passed in name
           updateProfile(auth.currentUser,{
             displayName: name
@@ -163,7 +171,7 @@ export default createStore({
           }).catch((error) => {
             console.log(error)
           })
-        })
+        
       }
     },
 
@@ -176,6 +184,7 @@ export default createStore({
       router.push("login")
     },
 
+    //fetching a users info
     fetchUser({ commit }){
       auth.onAuthStateChanged(async user => {
         if(user == null){
